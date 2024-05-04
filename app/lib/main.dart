@@ -1,3 +1,4 @@
+import 'package:app/screens/faq_screen.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: FaqScreen(),
     );
   }
 }

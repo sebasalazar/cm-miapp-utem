@@ -1,3 +1,4 @@
+import 'package:app/widgets/mi_barra.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,11 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        titleTextStyle: const TextStyle(color: Colors.white),
-        backgroundColor: Colors.green,
-        title: const Text('Electivo Computación Móvil'),
-      ),
+      appBar: const MiBarra(titulo: 'Página de inicio'),
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
