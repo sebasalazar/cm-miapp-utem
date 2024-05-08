@@ -17,8 +17,13 @@ class FaqScreen extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.all(15),
                 children: const [
-                  MiExpansion(titulo: '¿Qué ramo es este?', contenido: 'Este ramo es el electivo de computación móvil de la UTEM.'),
-                  MiExpansion(titulo: '¿Qué profe da el ramo?', contenido: 'El viejesor es Sebastián Salazar')
+                  MiExpansion(
+                      titulo: '¿Qué ramo es este?',
+                      contenido:
+                          'Este ramo es el electivo de computación móvil de la UTEM.'),
+                  MiExpansion(
+                      titulo: '¿Qué profe da el ramo?',
+                      contenido: 'El viejesor es Sebastián Salazar')
                 ],
               ))
         ],
