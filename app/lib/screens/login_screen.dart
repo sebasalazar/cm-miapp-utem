@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
             await account.authentication;
         final String idToken = authentication.idToken ?? '';
         final String accessToken = authentication.accessToken ?? '';
-        auth = idToken.isNotEmpty;
+        auth = (idToken.isNotEmpty || accessToken.isNotEmpty);
         _logger.d(idToken);
         _logger.d(accessToken);
       }
