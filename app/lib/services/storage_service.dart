@@ -24,10 +24,15 @@ class StorageService {
 
   static Future<List<Faq>> getDatos() async {
     List<Faq> lista = [];
-    SharedPreferences.getInstance().then((actual) {
-      String valor = actual.getString('llave') ?? '';
+    await SharedPreferences.getInstance().then((actual) {
+      final String valor = actual.getString('llave') ?? '';
       if (valor.isNotEmpty) {
-        lista = json.decode(valor);
+        List<dynamic> objetos = json.decode(valor);
+        if (objetos.isNotEmpty) {
+          lista = objetos.map((elemento) {
+            return Faq.fromJson(elemento);
+          }).toList();
+        }
       }
     });
     return lista;
