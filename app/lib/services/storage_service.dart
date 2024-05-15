@@ -22,19 +22,27 @@ class StorageService {
     });
   }
 
-  static Future<List<Faq>> getDatos() async {
-    List<Faq> lista = [];
-    await SharedPreferences.getInstance().then((actual) {
-      final String valor = actual.getString('llave') ?? '';
-      if (valor.isNotEmpty) {
-        List<dynamic> objetos = json.decode(valor);
-        if (objetos.isNotEmpty) {
-          lista = objetos.map((elemento) {
-            return Faq.fromJson(elemento);
-          }).toList();
-        }
+  static Future<String> getValue(String key) async {
+    String value = '';
+    await SharedPreferences.getInstance().then((current) {
+      if (current.containsKey(key)) {
+        value = current.getString(key) ?? '';
       }
     });
+    return value;
+  }
+
+  static Future<List<Faq>> getDatos() async {
+    List<Faq> lista = [];
+    String valor = await getValue('llave');
+    if (valor.isNotEmpty) {
+      List<dynamic> objetos = json.decode(valor);
+      if (objetos.isNotEmpty) {
+        lista = objetos.map((elemento) {
+          return Faq.fromJson(elemento);
+        }).toList();
+      }
+    }
     return lista;
   }
 }

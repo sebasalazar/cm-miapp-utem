@@ -1,4 +1,6 @@
+import 'package:app/screens/error_screen.dart';
 import 'package:app/screens/faq_screen.dart';
+import 'package:app/services/google_service.dart';
 import 'package:app/widgets/mi_barra.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -37,27 +39,26 @@ class LoginScreen extends StatelessWidget {
       appBar: const MiBarra(titulo: 'Accede a la aplicación'),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(17),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 17),
-              ElevatedButton(
-                  onPressed: () {
-                    _manejarAutenticacion().then((ok) {
-                      if (ok) {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const FaqScreen();
-                          },
-                        ));
-                      } else {
-                        _logger.e("Falló la autenticación");
-                      }
-                    });
-                  },
-                  child: const Text('Inicia sesión con Google'))
-            ],
+          padding: const EdgeInsets.all(100.0),
+          child: ElevatedButton(
+            child: const Row(
+              children: [Icon(Icons.g_mobiledata), Text('Login')],
+            ),
+            onPressed: () {
+              GoogleService.logIn().then((result) {
+                if (result) {
+                  _logger.i('Me pude autenticar');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const FaqScreen();
+                  }));
+                } else {
+                  _logger.e('No fue posible autenticar');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const ErrorScreen();
+                  }));
+                }
+              });
+            },
           ),
         ),
       ),

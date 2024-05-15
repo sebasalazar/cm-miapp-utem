@@ -35,4 +35,20 @@ class GoogleService {
     }
     return ok;
   }
+
+  static Future<void> logOut() async {
+    try {
+      GoogleSignInAccount? account = await _googleSignIn.signOut();
+      SharedPreferences.getInstance().then((current) {
+        current.setString('idToken', '');
+        current.setString('email', '');
+        current.setString('name', '');
+        current.setString('image', '');
+      });
+      _logger.i('El usuario terminó su sesión');
+    } catch (error, stackTrace) {
+      _logger.e(error);
+      _logger.d(stackTrace.toString());
+    }
+  }
 }
