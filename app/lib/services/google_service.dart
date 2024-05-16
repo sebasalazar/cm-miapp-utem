@@ -26,6 +26,7 @@ class GoogleService {
             current.setString('name', account.displayName ?? '');
             current.setString('image', account.photoUrl ?? '');
           });
+          ok = true;
         }
       }
     } catch (error, stackTrace) {

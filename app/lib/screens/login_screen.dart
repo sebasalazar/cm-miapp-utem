@@ -8,30 +8,8 @@ import 'package:logger/logger.dart';
 
 class LoginScreen extends StatelessWidget {
   static final _logger = Logger();
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
-  LoginScreen({super.key});
-
-  Future<bool> _manejarAutenticacion() async {
-    bool auth = false;
-    try {
-      final GoogleSignInAccount? account = await _googleSignIn.signIn();
-      if (account != null) {
-        GoogleSignInAuthentication authentication =
-            await account.authentication;
-        final String idToken = authentication.idToken ?? '';
-        final String accessToken = authentication.accessToken ?? '';
-        auth = (idToken.isNotEmpty || accessToken.isNotEmpty);
-        _logger.d(idToken);
-        _logger.d(accessToken);
-      }
-    } catch (error, stackTrace) {
-      auth = false;
-      _logger.e('Error al iniciar sesión en Google: ${error.toString()}');
-      _logger.d(stackTrace.toString(), stackTrace: stackTrace);
-    }
-    return auth;
-  }
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
