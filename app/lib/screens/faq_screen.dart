@@ -2,12 +2,14 @@ import 'package:app/models/faq.dart';
 import 'package:app/services/storage_service.dart';
 import 'package:app/widgets/mi_barra.dart';
 import 'package:app/widgets/mi_expansion.dart';
+import 'package:app/widgets/mi_menu.dart';
 import 'package:flutter/material.dart';
 
 class EstadoFaqScreen extends State<FaqScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MiMenu(),
       appBar: const MiBarra(titulo: 'Preguntas Frecuentes'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

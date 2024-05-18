@@ -1,5 +1,6 @@
 import 'package:app/screens/error_screen.dart';
 import 'package:app/screens/faq_screen.dart';
+import 'package:app/screens/home_screen.dart';
 import 'package:app/services/google_service.dart';
 import 'package:app/widgets/mi_barra.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class LoginScreen extends StatelessWidget {
                 if (result) {
                   _logger.i('Me pude autenticar');
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const FaqScreen();
+                    return const HomeScreen();
                   }));
                 } else {
                   _logger.e('No fue posible autenticar');
