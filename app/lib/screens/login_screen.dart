@@ -1,10 +1,10 @@
 import 'package:app/screens/error_screen.dart';
-import 'package:app/screens/faq_screen.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:app/services/google_service.dart';
+import 'package:app/services/rest_service.dart';
+import 'package:app/services/storage_service.dart';
 import 'package:app/widgets/mi_barra.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -26,6 +26,13 @@ class LoginScreen extends StatelessWidget {
             onPressed: () {
               GoogleService.logIn().then((result) {
                 if (result) {
+                  StorageService.getValue("idToken").then((jwt) {
+                    if (jwt.isNotEmpty) {
+                      RestService rs = RestService();
+                      rs.access(jwt);
+                    }
+                  });
+
                   _logger.i('Me pude autenticar');
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return const HomeScreen();
