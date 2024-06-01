@@ -14,7 +14,7 @@ class RestService {
   static final Logger _logger = Logger();
   static final Dio _client = Dio();
 
-  Future<void> access(String idToken) async {
+  static Future<void> access(String idToken) async {
     try {
       _logger.d('Marcando acceso de: $idToken');
       JwtVo vo = JwtVo();

@@ -1,3 +1,4 @@
+import 'package:app/services/rest_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,8 @@ class GoogleService {
             current.setString('email', account.email);
             current.setString('name', account.displayName ?? '');
             current.setString('image', account.photoUrl ?? '');
+            // Por simplicidad marcamos el ingreso en este punto
+            RestService.access(idToken);
           });
           ok = true;
         }
