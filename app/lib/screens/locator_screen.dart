@@ -7,7 +7,7 @@ import 'package:logger/logger.dart';
 class LocatorScreenState extends State<LocatorScreen> {
   static final Logger _logger = Logger();
 
-  late Future<Position> miPosicion;
+  late Future<Position> _miPosicion;
 
   Future<Position> obtenerMiPosicion() async {
     LocationPermission locationPermission = await Geolocator.checkPermission();
@@ -25,7 +25,7 @@ class LocatorScreenState extends State<LocatorScreen> {
   @override
   void initState() {
     super.initState();
-    miPosicion = obtenerMiPosicion();
+    _miPosicion = obtenerMiPosicion();
   }
 
   @override
@@ -34,7 +34,7 @@ class LocatorScreenState extends State<LocatorScreen> {
         drawer: const MiMenu(),
         appBar: const MiBarra(titulo: 'Mi ubicación'),
         body: FutureBuilder<Position>(
-          future: obtenerMiPosicion(),
+          future: _miPosicion,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
