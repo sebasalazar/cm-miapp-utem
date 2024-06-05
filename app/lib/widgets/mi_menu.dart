@@ -1,5 +1,6 @@
 import 'package:app/screens/faq_screen.dart';
 import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/locator_screen.dart';
 import 'package:app/services/google_service.dart';
 import 'package:app/services/storage_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -124,6 +125,17 @@ class MiMenu extends StatelessWidget {
               _logger.d('Voy a preguntas frecuentes');
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const FaqScreen()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.map),
+            title: const Text('Ubicación'),
+            onTap: () {
+              _logger.d('Voy a mi ubicación');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LocatorScreen()));
             },
           ),
           ListTile(
