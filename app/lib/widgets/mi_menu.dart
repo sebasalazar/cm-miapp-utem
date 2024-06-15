@@ -1,6 +1,7 @@
 import 'package:app/screens/faq_screen.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/locator_screen.dart';
+import 'package:app/screens/photo_screen.dart';
 import 'package:app/services/google_service.dart';
 import 'package:app/services/storage_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -136,6 +137,15 @@ class MiMenu extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const LocatorScreen()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.photo),
+            title: const Text('Camara'),
+            onTap: () {
+              _logger.d('Voy a mi la camara');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const PhotoScreen()));
             },
           ),
           ListTile(

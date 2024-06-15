@@ -2,6 +2,7 @@
     <application
         android:label="app"
         android:name="${applicationName}"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
 
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="REEMPLAZAR_POR_API_KEY" />
