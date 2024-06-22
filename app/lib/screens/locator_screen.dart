@@ -5,13 +5,26 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:logger/logger.dart';
 
+/// Esta clase representa el estado de la pantalla LocatorScreen que muestra
+/// la ubicación del usuario.
 class LocatorScreenState extends State<LocatorScreen> {
+  /// La librería que maneja el log de la aplicación
   static final Logger _logger = Logger();
 
+  /// Indica si el mapa ha sido creado.
   bool isMapCreated = false;
+
+  /// Controlador que maneja los mapas de Google.
   late GoogleMapController _miMapa;
+
+  /// La promesa de la ubicación del usuario
   late Future<LatLng> _center;
 
+  /// Obtiene la posición actual del usuario
+  ///
+  /// Comprueba y solicita los permisos de ubicación (en caso de ser necesario).
+  /// Retorna la latitud y longitud del usuario en un objeto de tipo [LatLng]
+  /// En caso de no tener permiso, se retornará un error.
   Future<LatLng> obtenerMiPosicion() async {
     LocationPermission locationPermission = await Geolocator.checkPermission();
     if (LocationPermission.denied == locationPermission ||
@@ -79,6 +92,7 @@ class LocatorScreenState extends State<LocatorScreen> {
   }
 }
 
+/// Widget que representa la pantalla de ubicación del usuario
 class LocatorScreen extends StatefulWidget {
   const LocatorScreen({super.key});
 
