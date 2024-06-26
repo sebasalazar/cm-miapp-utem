@@ -5,7 +5,7 @@ import 'package:app/widgets/mi_expansion.dart';
 import 'package:app/widgets/mi_menu.dart';
 import 'package:flutter/material.dart';
 
-class EstadoFaqScreen extends State<FaqScreen> {
+class _EstadoFaqScreen extends State<FaqScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,5 +59,5 @@ class FaqScreen extends StatefulWidget {
   const FaqScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => EstadoFaqScreen();
+  State<StatefulWidget> createState() => _EstadoFaqScreen();
 }

@@ -1,4 +1,3 @@
-import 'package:app/screens/faq_screen.dart';
 import 'package:app/widgets/mi_barra.dart';
 import 'package:app/widgets/mi_menu.dart';
 import 'package:flutter/material.dart';

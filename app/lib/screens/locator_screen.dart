@@ -7,7 +7,7 @@ import 'package:logger/logger.dart';
 
 /// Esta clase representa el estado de la pantalla LocatorScreen que muestra
 /// la ubicación del usuario.
-class LocatorScreenState extends State<LocatorScreen> {
+class _LocatorScreenState extends State<LocatorScreen> {
   /// La librería que maneja el log de la aplicación
   static final Logger _logger = Logger();
 
@@ -97,5 +97,5 @@ class LocatorScreen extends StatefulWidget {
   const LocatorScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => LocatorScreenState();
+  State<StatefulWidget> createState() => _LocatorScreenState();
 }

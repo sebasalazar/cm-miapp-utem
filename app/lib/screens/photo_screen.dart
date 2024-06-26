@@ -5,22 +5,34 @@ import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:logger/logger.dart';
 
+/// Clase `PhotoScreen` que representa la pantalla de tomar una foto.
+/// Es un `StatefulWidget` que permite mantener el estado del controlador
+/// de la cámara y otros datos.
+class PhotoScreen extends StatefulWidget {
+  const PhotoScreen({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _PhotoScreen();
+}
+
+/// Estado asociado a `PhotoScreen`, maneja la lógica y el estado de la cámara.
 class _PhotoScreen extends State<PhotoScreen> {
   // Logger para loguear la información de desarrollo
   static final Logger _logger = Logger();
 
-  // Controlador para la camara
+  // Controlador para la cámara
   late CameraController _controlador;
 
-  // Inicializador
+  // Inicializador del controlador de la cámara
   Future<void>? _inicializadorControlador;
 
-  // Listado de camaras
+  // Listado de cámaras disponibles
   late List<CameraDescription> camaras;
 
-  // La camara a usar
+  // La cámara a usar
   late CameraDescription primeraCamara;
 
+  /// Método para inicializar las cámaras.
   Future<void> inicializadorCamaras() async {
     try {
       camaras = await availableCameras();
@@ -35,7 +47,7 @@ class _PhotoScreen extends State<PhotoScreen> {
         });
       }
     } catch (error) {
-      _logger.e("Error al iniciar camaras", error: error);
+      _logger.e("Error al iniciar cámaras", error: error);
     }
   }
 
@@ -51,9 +63,10 @@ class _PhotoScreen extends State<PhotoScreen> {
     super.dispose();
   }
 
+  /// Método para tomar una foto y guardarla en la galería.
   Future<void> _tomarFoto() async {
     try {
-      // Esperar que la camara esté lista y disponible
+      // Esperar que la cámara esté lista y disponible
       await _inicializadorControlador;
 
       // Tomar la foto
@@ -86,7 +99,7 @@ class _PhotoScreen extends State<PhotoScreen> {
           } else if (snapshot.hasError) {
             return Center(
                 child:
-                    Text('Hay un error al usar la camara ${snapshot.error}'));
+                    Text('Hay un error al usar la cámara: ${snapshot.error}'));
           } else {
             return const Center(child: CircularProgressIndicator());
           }
@@ -96,11 +109,4 @@ class _PhotoScreen extends State<PhotoScreen> {
           onPressed: _tomarFoto, child: const Icon(Icons.camera)),
     );
   }
-}
-
-class PhotoScreen extends StatefulWidget {
-  const PhotoScreen({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _PhotoScreen();
 }

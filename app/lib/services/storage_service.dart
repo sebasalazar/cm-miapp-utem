@@ -4,9 +4,12 @@ import 'package:app/models/faq.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Servicio para manejar el almacenamiento de datos utilizando `SharedPreferences`.
 class StorageService {
+  // Logger para registrar la información de desarrollo
   static final Logger _logger = Logger();
 
+  /// Método para cargar datos predeterminados en `SharedPreferences`.
   static void cargar() {
     List<Faq> lista = [];
     lista.add(Faq(
@@ -22,6 +25,8 @@ class StorageService {
     });
   }
 
+  /// Método para obtener un valor específico almacenado en `SharedPreferences` por su clave.
+  /// Devuelve el valor almacenado como una cadena de texto.
   static Future<String> getValue(String key) async {
     String value = '';
     await SharedPreferences.getInstance().then((current) {
@@ -32,6 +37,8 @@ class StorageService {
     return value;
   }
 
+  /// Método para obtener una lista de datos almacenados en `SharedPreferences`.
+  /// Devuelve una lista de objetos `Faq`.
   static Future<List<Faq>> getDatos() async {
     List<Faq> lista = [];
     String valor = await getValue('llave');
